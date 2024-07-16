@@ -1,14 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Hello World
-        </p>
-      </header>
+      <SignIn />
     </div>
   );
 }
