@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from "axios";
-import "../styles/LogIn.css"
+import "../../styles/SignUp.css"
 
-function LogIn() {
+function SignUp(props) {
 
-  async function onLogIn(e) {
+  async function onSignUp(e) {
 
     e.preventDefault();
 
@@ -22,14 +22,19 @@ function LogIn() {
   }
 
   return (
-    <form className='login' onSubmit={onLogIn}>
+    <form className='signup' onSubmit={onSignUp}>
         <h1>Fintstagram</h1>
+        <h2>SignUp</h2>
         <input type="email" placeholder="Email"/>
         <input type="text" placeholder="Username"/>
         <input type="password" placeholder="Password"/>
-        <button type="submit">Log In</button>
+        <button type="submit">Sign Up</button>
+        <button
+        type="button"
+        onClick={() => props.changeToLogIn()}
+        >LogIn</button>
     </form>
   )
 }
 
-export default LogIn
+export default SignUp
