@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { users } = require("../models")
 const Validation = require("../helpers/Validation");
+const { json } = require("sequelize");
 
 const router = express.Router()
 
@@ -13,11 +14,11 @@ router.post("/", async (req, res) => {
 
     const {email, username, password} = req.body;
 
-    if(!Validation.isValidEmail(email)){
+    if(email && !Validation.isValidEmail(email)){
         return res.json({ error: "Invalid Email"});
     };
 
-    if(!Validation.isValidUsername(username)){
+    if(username && !Validation.isValidUsername(username)){
         return res.json({ error: "Invalid Username"});
     };
 
@@ -43,6 +44,44 @@ router.post("/", async (req, res) => {
     } catch(e) {
         return res.json({ error: e })
     }
+})
+
+router.post("/login", async (req, res) => {
+
+    const {email, username, password} = req.body;
+
+    
+    if((!email && !username) || !password){
+        return res.json({ error: "Invalid Input"});
+    };
+    
+    if(email && !Validation.isValidEmail(email)){
+        return res.json({ error: "Invalid Email"});
+    };
+
+    if(username && !Validation.isValidUsername(username)){
+        return res.json({ error: "Invalid Username"});
+    };
+    
+    let user;
+    if(username) {
+        user = await users.findOne({ where: { username: username}})
+    } else if(email) {
+        user = await users.findOne({ where: { email: email}})
+    }
+    
+    if(!user) {
+        return res.json({ error: "Account does not exist"})
+    }
+    
+    // match password
+    
+    bcrypt.compare(password, user.password).then( async (match) => {
+        if(!match) {
+            return res.json({ error: "Wrong password"})
+        }
+        return res.json({login: true});
+    })
 })
 
 module.exports = router;

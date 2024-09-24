@@ -1,5 +1,9 @@
-.App {
+body {
   text-align: center;
   background-color: black;
   height: 100vh;
+}
+
+div {
+  color:white;
 }
