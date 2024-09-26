@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../services/AuthContext';
 
 import "../../styles/LogIn.css"
 
@@ -9,6 +10,7 @@ import Validation from '../../services/Validation';
 function LogIn(props) {
 
   const navigate = useNavigate();
+  const {setLogin} = useContext(AuthContext);
 
   async function onLogIn(e) {
 
@@ -38,7 +40,9 @@ function LogIn(props) {
     if(response?.data?.error) {
       console.log("Error", response.data.error);
     } else if(response?.data?.login) {
+      setLogin(true);
       navigate("/home");
+      localStorage.setItem("login", true);
     }
   }
 
