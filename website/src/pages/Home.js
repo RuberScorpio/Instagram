@@ -8,8 +8,14 @@ import { AuthContext } from '../services/AuthContext'
 
 function Home() {
 
- const {login} = useContext(AuthContext);
+ const {login, setAuth} = useContext(AuthContext);
  const navigate = useNavigate();
+ 
+ const onLogout = () => {
+  localStorage.removeItem("AuthToken")
+  navigate("/entry")
+  setAuth(false)
+ }
 
   return (
     <div>Home
@@ -18,9 +24,7 @@ function Home() {
       </div>
     <button
     type="button"
-    onClick={() => {localStorage.removeItem("login");
-    navigate("/entry");
-    }}
+    onClick={onLogout}
     >LogOut</button>
     </div>
   )

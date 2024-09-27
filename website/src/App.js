@@ -6,32 +6,49 @@ import {
 } from "react-router-dom";
 
 import { useState, useEffect } from "react";
-
 import { AuthContext } from "./services/AuthContext";
 import { PrivateRoute } from "./services/PrivateRoute";
-
+import axios from "axios";
 import './App.css';
-
 import Entry from "./pages/Entry";
 import Home from "./pages/Home";
 
 function App() {
 
-  const [login, setLogin] = useState(false);
+  const [login, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect (() => {
-    console.log("Login", localStorage.getItem("login"));
-    setLogin(localStorage.getItem("login"));
-    setLoading(false);
+    if(localStorage.getItem("AuthToken")) {
+      checkAuth();
+    } else {
+      setLoading(false);
+    }
   }, [])
+  
+  async function checkAuth() {
+    let response = await axios.get("http://localhost:5555/users/auth",
+      {
+        headers: {
+          authToken: localStorage.getItem("AuthToken"),
+        }
+      }
+    )
+    
+    if(response?.data?.error) {
+      console.log(response.data.error);
+    } else if(response?.data?.user) {
+      setAuth(response?.data?.user)
+    }
+    setLoading(false);
+  }
 
   if(loading) {
     return <></>
   }
 
   return (
-    <AuthContext.Provider value={{ login, setLogin }}>
+    <AuthContext.Provider value={{ login, setAuth }}>
       <Router>
         <Routes>
           <Route path="/entry" element={<Entry />} />

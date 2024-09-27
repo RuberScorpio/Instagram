@@ -1,14 +1,11 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const { users } = require("../models")
 const Validation = require("../helpers/Validation");
-const { json } = require("sequelize");
-
 const router = express.Router()
-
-router.get('/', async (req, res) => {
-    return res.send(false);
-})
+const { users } = require("../models")
+const { sign } = require("jsonwebtoken");
+const { validateToken } = require("../middlewares/Authentication");
+require("dotenv").config()
 
 router.post("/", async (req, res) => {
 
@@ -80,8 +77,28 @@ router.post("/login", async (req, res) => {
         if(!match) {
             return res.json({ error: "Wrong password"})
         }
-        return res.json({login: true});
+        const authToken = sign(
+            {
+                email: user.email,
+                username: user.username,
+                status: true,
+            },
+            process.env.AUTH_SECRET)
+
+        return res.json({
+            authToken: authToken,
+            email: user.email,
+            username: user.username,
+            status: true
+        });
     })
+})
+
+router.get("/auth", validateToken, async (req, res) => {
+
+    if(req.user) {
+        return res.json({ user: req.user});
+    }
 })
 
 module.exports = router;

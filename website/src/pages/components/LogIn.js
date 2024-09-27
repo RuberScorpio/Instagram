@@ -10,7 +10,7 @@ import Validation from '../../services/Validation';
 function LogIn(props) {
 
   const navigate = useNavigate();
-  const {setLogin} = useContext(AuthContext);
+  const {setAuth} = useContext(AuthContext);
 
   async function onLogIn(e) {
 
@@ -39,10 +39,14 @@ function LogIn(props) {
 
     if(response?.data?.error) {
       console.log("Error", response.data.error);
-    } else if(response?.data?.login) {
-      setLogin(true);
+    } else if(response?.data?.status) {
+      setAuth({
+        email: response?.data?.email,
+        username: response?.data?.username,
+        status: response?.data?.status
+      });
+      localStorage.setItem("AuthToken", response?.data?.authToken);
       navigate("/home");
-      localStorage.setItem("login", true);
     }
   }
 
