@@ -1,14 +1,12 @@
 import React, {useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
-
-
-import "../styles/Home.css"
-
 import { AuthContext } from '../services/AuthContext'
+import CreatePostForm from './components/CreatePostForm';
+import "../styles/Home.css"
 
 function Home() {
 
- const {login, setAuth} = useContext(AuthContext);
+ const {setAuth} = useContext(AuthContext);
  const navigate = useNavigate();
  
  const onLogout = () => {
@@ -18,16 +16,13 @@ function Home() {
  }
 
   return (
-    <div>Home
-      <div>
-        { login ? "Logged In" : "Logged Out" }
-      </div>
-    <button
-    type="button"
-    onClick={onLogout}
-    >LogOut</button>
-    </div>
+<div className='Home'>
+      <h1>Fintstagram</h1>
+      <CreatePostForm />
+      <button type="button" onClick={onLogout}>Logout</button>
+</div>
   )
 }
 
 export default Home
+

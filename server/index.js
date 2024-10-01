@@ -9,8 +9,10 @@ require("dotenv").config()
 app.use(express.json())
 app.use(cors());
 
-const usersRouter = require("./ruotes/users");
+const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
+const postsRouter = require("./routes/posts")
+app.use("/posts", postsRouter)
 
 db.sequelize.sync().then(() => {
 app.listen(5555, () => {

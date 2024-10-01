@@ -81,7 +81,8 @@ router.post("/login", async (req, res) => {
             {
                 email: user.email,
                 username: user.username,
-                status: true,
+                id: user.id,
+                status: true
             },
             process.env.AUTH_SECRET)
 
@@ -89,6 +90,7 @@ router.post("/login", async (req, res) => {
             authToken: authToken,
             email: user.email,
             username: user.username,
+            id: user.id,
             status: true
         });
     })

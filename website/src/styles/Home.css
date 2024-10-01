@@ -1,16 +1,44 @@
-.signup {
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Centering titles and button */
+.Home {
+    display: flex;
     flex-direction: column;
-    height: 100%;
-    gap: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
-h1 {
-    color: white;
+/* Titles */
+.Home h1 {
+    font-size: 2.5rem;
+    color: #ff7f50;
+    margin-bottom: 10px;
 }
 
-h2 {
+/* Button styles */
+button[type="button"] {
+    padding: 12px 24px;
+    background-color: #ff7f50;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
     color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button[type="button"]:hover {
+    background-color: #e6674b;
 }

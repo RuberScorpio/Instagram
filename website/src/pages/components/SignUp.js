@@ -37,17 +37,17 @@ function SignUp(props) {
   }
 
   return (
-    <form className='signup' onSubmit={onSignUp}>
+    <form className='Signup' onSubmit={onSignUp}>
         <h1>Fintstagram</h1>
-        <h2>SignUp</h2>
+        <h2>Signup</h2>
         <input type="email" placeholder="Email"/>
         <input type="text" placeholder="Username"/>
         <input type="password" placeholder="Password"/>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Signup</button>
         <button
         type="button"
         onClick={() => props.changeToLogIn()}
-        >LogIn</button>
+        >Login</button>
     </form>
   )
 }
