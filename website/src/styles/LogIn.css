@@ -1,5 +1,5 @@
 /* Global styles */
-body {
+.BodyLogin {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
     margin: 0;
@@ -57,8 +57,8 @@ body {
 }
 
 /* Button styles */
-button[type="submit"],
-button[type="button"] {
+.Login button[type="submit"],
+.Login button[type="button"] {
     width: 100%;
     padding: 12px;
     background-color: #ff7f50;
@@ -71,7 +71,7 @@ button[type="button"] {
     margin-top: 10px; /* Space between buttons */
 }
 
-button[type="submit"]:hover,
-button[type="button"]:hover {
+.Login button[type="submit"]:hover,
+.Login button[type="button"]:hover {
     background-color: #e6674b;
 }

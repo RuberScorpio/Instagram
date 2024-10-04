@@ -1,8 +1,10 @@
 /* Centering the create post form */
-.Form {
+.Posts {
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
-    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
     align-items: center; /* Inizia dall'alto, non centrare verticalmente */
     text-align: center;
     display: flex;
@@ -13,52 +15,51 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Titles */
-.Form h1 {
-    font-size: 2.5rem;
-    color: #ff7f50;
-    margin-bottom: 10px;
-}
 
-.Form h2 {
+.Posts h2 {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 20px;
 }
 
+/* Titles */
+.Posts p {
+    font-size: 0.75rem;
+    color: #ff7f50;
+    margin-bottom: 10px;
+}
+
 /* Input styles for the title field */
-.Form input[type="text"] {
+.Posts input[type="text"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    box-sizing: border-box;
 }
 
 /* Textarea styles for the description field */
-.Form textarea {
-    width: 100%;
+.Posts textarea {
+    width: 100%; /* Occupano tutta la larghezza */
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    resize: vertical;
-    box-sizing: border-box;
+    resize: vertical; /* Consente di allargare solo verticalmente */
 }
 
 /* Focus styles */
-.Form input[type="text"]:focus,
-.Form textarea:focus {
+.Posts input[type="text"]:focus,
+.Posts textarea:focus {
     border-color: #ff7f50;
     outline: none;
     box-shadow: 0 0 5px rgba(255, 127, 80, 0.5);
 }
 
 /* Button styles */
-.Form button[type="submit"] {
+.Posts button[type="submit"] {
     width: 100%;
     padding: 12px;
     background-color: #ff7f50;
@@ -71,6 +72,6 @@
     margin-top: 10px;
 }
 
-.Form button[type="submit"]:hover {
+.Posts button[type="submit"]:hover {
     background-color: #e6674b;
 }

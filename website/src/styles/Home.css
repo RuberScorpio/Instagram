@@ -1,22 +1,21 @@
-/* Global styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-}
-
 /* Centering titles and button */
 .Home {
-    display: flex;
+    height: 100vh;
+    background-color: #f4f4f9;
+    display: block;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Inizia dall'alto, non centrare verticalmente */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 20px; /* Aggiungi padding per evitare tagli */
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px; /* Spazio extra tra i blocchi */
+}
+
+.Contents {
+    margin-top: 7vh;
 }
 
 /* Titles */
@@ -26,19 +25,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* Button styles */
-button[type="button"] {
-    padding: 12px 24px;
-    background-color: #ff7f50;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-button[type="button"]:hover {
-    background-color: #e6674b;
+.Home > * {
+    margin-bottom: 15px;
 }

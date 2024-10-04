@@ -51,17 +51,19 @@ function LogIn(props) {
   }
 
   return (
-    <form className='Login' onSubmit={onLogIn}>
-        <h1>Fintstagram</h1>
-        <h2>Login</h2>
-        <input type="text" placeholder="Email o Username"/>
-        <input type="password" placeholder="Password"/>
-        <button type="submit">Login</button>
-        <button
-        type="button"
-        onClick={() => props.changeToSignUp()}
-        >Signup</button>
-    </form>
+    <body className='BodyLogin'>
+      <form className='Login' onSubmit={onLogIn}>
+          <h1>Fintstagram</h1>
+          <h2>Login</h2>
+          <input type="text" placeholder="Email o Username"/>
+          <input type="password" placeholder="Password"/>
+          <button type="submit">Login</button>
+          <button
+          type="button"
+          onClick={() => props.changeToSignUp()}
+          >Signup</button>
+      </form>
+    </body>
   )
 }
 
