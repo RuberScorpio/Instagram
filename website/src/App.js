@@ -12,6 +12,8 @@ import axios from "axios";
 import './App.css';
 import Entry from "./pages/Entry";
 import Home from "./pages/Home";
+import UserProfile from "./pages/UserProfile";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -48,17 +50,23 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={{ login, setAuth }}>
-      <Router>
-        <Routes>
-          <Route path="/entry" element={<Entry />} />
-          <Route path="/home" element={<PrivateRoute />}>
-            <Route path="/home" element={<Home />} />
-          </Route>
-          <Route path="*" element={<Navigate to={login  ? "/home" : "/entry"} />} />
-        </Routes>
-      </Router>
-    </AuthContext.Provider>
+    <>
+      <AuthContext.Provider value={{ login, setAuth }}>
+        <Router>
+          <Routes>
+            <Route path="/entry" element={<Entry />} />
+            <Route path="/home" element={<PrivateRoute />}>
+              <Route path="/home" element={<Home />} />
+            </Route>
+            <Route path="/user/:username" element={<PrivateRoute />}>
+              <Route path="/user/:username" element={<UserProfile />} />
+            </Route>
+            <Route path="*" element={<Navigate to={login  ? "/home" : "/entry"} />} />
+          </Routes>
+        </Router>
+      </AuthContext.Provider>
+      <ToastContainer />
+    </>
   );
 }
 

@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import "../../styles/Posts.css";
 import axios from 'axios';
+import { AuthContext } from '../../services/AuthContext';
+import { toast } from "react-toastify"
 
 
 function Posts(props) {
+
+  const {login} = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+
+    if(props?.username) {
+      setUsername(props?.username)
+    } else if(props?.posts?.username) {
+      setUsername(props?.posts?.user?.username);
+    }
+  }, [props])
 
   const onDelete = async () => {
 
@@ -21,10 +35,12 @@ function Posts(props) {
     <div className='Posts' id={props?.id}>
     <h2>{props?.posts?.title}</h2>
     <p>{props?.posts?.description}</p>
-    <p>{props?.posts?.user?.username}</p>
-    <button className='button' onClick={onDelete}>
-      Delete
-    </button>
+    <p>{props?.username ? props?.username : props?.posts?.user?.username}</p>
+    {
+      login.username === username ?
+      <button type='button' onClick={onDelete}>Delete</button>
+      : <></>
+    }
     </div>
   )
 }

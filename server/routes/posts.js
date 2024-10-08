@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router();
 const {validateToken} = require("../middlewares/Authentication")
 const { posts, users } = require("../models");
-const { Op } = require("sequelize");
+const { Op, json } = require("sequelize");
 
 router.post("/", validateToken, async (req, res) => {
     const {title, description} = req.body;
@@ -32,6 +32,29 @@ router.get("/", validateToken, async (req, res) => {
     });
 
     return res.json(getPosts)
+})
+
+router.get("/:username", validateToken, async (req, res) => {
+    const {username} = req.params;
+
+    let user = await users.findOne({
+        where: {
+            username: username
+        }
+    })
+
+    if(!user) {
+        return res.json({ error: "User Does Not Exist!"})
+    }
+
+    let userPosts = await posts.findAll({
+        where: {
+            userId: user.id,
+            status: "active"
+        }
+    })
+
+    return res.json(userPosts)
 })
 
 router.delete("/:id", validateToken, async (req, res) => {

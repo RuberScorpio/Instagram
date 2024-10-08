@@ -13,10 +13,11 @@ function GetAllPosts() {
 
     const getAllPosts = async () => {
         
-        let response = await axios.get("http://localhost:5555/posts",
+        let response = await axios.get(
+            "http://localhost:5555/posts",
             {
                 headers: {
-                    authToken: localStorage.getItem("AuthToken"),
+                    authToken: localStorage.getItem("AuthToken")
                 }
             })
 
