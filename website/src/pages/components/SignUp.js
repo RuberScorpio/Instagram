@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import { toast } from "react-toastify";
 import "../../styles/SignUp.css"
 
 function SignUp(props) {
@@ -11,17 +12,17 @@ function SignUp(props) {
     console.log("E", e.target[0].value, e.target[1].value, e.target[2].value);
 
     if(!e.target[0].value){
-      console.log("Put your email")
+      toast.success("Put your email")
       return;
    };
 
     if(!e.target[1].value){
-     console.log("Put your username")
-     return;
+      toast.success("Put your username")
+      return;
    };
 
     if(!e.target[2].value){
-      console.log("Put your passord")
+      toast.success("Put your passord")
       return;
    };
 
@@ -33,7 +34,8 @@ function SignUp(props) {
         password: e.target[2].value
       }
     )
-    console.log(response.data);
+    toast.success("Account has been Created!");
+    console.log(response?.data)
   }
 
   return (

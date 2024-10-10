@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../services/AuthContext';
+import { toast } from "react-toastify";
 
 import "../../styles/LogIn.css"
 
@@ -19,12 +20,12 @@ function LogIn(props) {
     console.log("E", e.target[0].value, e.target[1].value);
 
     if(!e.target[0].value){
-      console.log("Put your email or username")
+      toast.success("Put your email or username")
       return;
    };
 
     if(!e.target[1].value){
-      console.log("Put your passord")
+      toast.success("Put your passord")
       return;
    };
 
@@ -34,11 +35,9 @@ function LogIn(props) {
         password: e.target[1].value 
       }
     )
-
-    console.log("Res", response )
-
+    
     if(response?.data?.error) {
-      console.log("Error", response.data.error);
+      toast.error("Error", response.data.error);
     } else if(response?.data?.status) {
       setAuth({
         email: response?.data?.email,
@@ -47,6 +46,7 @@ function LogIn(props) {
       });
       localStorage.setItem("AuthToken", response?.data?.authToken);
       navigate("/home");
+      toast.success("You have logged in", response )
     }
   }
 

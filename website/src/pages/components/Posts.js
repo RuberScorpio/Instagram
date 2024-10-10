@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import "../../styles/Posts.css";
 import axios from 'axios';
 import { AuthContext } from '../../services/AuthContext';
-import { toast } from "react-toastify"
+import { toast } from 'react-toastify';
 
 
 function Posts(props) {
@@ -14,7 +14,7 @@ function Posts(props) {
 
     if(props?.username) {
       setUsername(props?.username)
-    } else if(props?.posts?.username) {
+    } else if(props?.posts?.user?.username) {
       setUsername(props?.posts?.user?.username);
     }
   }, [props])
@@ -29,12 +29,15 @@ function Posts(props) {
       }
     )
 
+    props.deletePost(props?.posts?.id)
+    toast.success("You have Deleted Your Post")
   }
 
   return (
     <div className='Posts' id={props?.id}>
     <h2>{props?.posts?.title}</h2>
     <p>{props?.posts?.description}</p>
+    <p>{props?.posts?.createdAt}</p>
     <p>{props?.username ? props?.username : props?.posts?.user?.username}</p>
     {
       login.username === username ?

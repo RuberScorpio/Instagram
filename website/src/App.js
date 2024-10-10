@@ -4,7 +4,6 @@ import {
   Route,
   Navigate
 } from "react-router-dom";
-
 import { useState, useEffect } from "react";
 import { AuthContext } from "./services/AuthContext";
 import { PrivateRoute } from "./services/PrivateRoute";
@@ -13,7 +12,8 @@ import './App.css';
 import Entry from "./pages/Entry";
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
@@ -38,7 +38,7 @@ function App() {
     )
     
     if(response?.data?.error) {
-      console.log(response.data.error);
+      toast.error(response.data.error);
     } else if(response?.data?.user) {
       setAuth(response?.data?.user)
     }

@@ -5,6 +5,7 @@ import CreatePostForm from './components/CreatePostForm';
 import ShowPosts from './components/ShowPosts';
 import Menu from './components/Menu';
 import "../styles/Home.css"
+import { toast } from 'react-toastify';
 
 function Home() {
 
@@ -16,6 +17,7 @@ function Home() {
   localStorage.removeItem("AuthToken")
   navigate("/entry")
   setAuth(false)
+  toast.success("You have logged out")
  }
 
   return (
@@ -29,7 +31,7 @@ function Home() {
       {
         menu === "Show"
         ?
-        <ShowPosts />
+        <ShowPosts/>
         :
         <CreatePostForm />
       }
