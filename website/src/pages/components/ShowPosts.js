@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import axios from 'axios';
 import Posts from "./Posts";
 import Sorting  from "../../services/Sorting";
+import "../../styles/ShowPosts.css";
 
 function GetAllPosts() {
 
@@ -46,18 +47,20 @@ function GetAllPosts() {
         
     return (
         <>
-        <h2>Posts</h2>
-        <button type="button"
-        onClick={() => setPosts(Sorting.sortPost("newest", [...posts]))}
-        >Newest</button>
-        <button type="button"
-        onClick={() => setPosts(Sorting.sortPost("oldest", [...posts]))}
-        >Oldest</button>
-            {posts?.map((post) => {
-                return (
-                    <Posts posts={post} deletePost={deletePost}/>
-                )
-            })}
+            <h2>Posts</h2>
+            <div className='Order'>
+                <button type="button" className='ButtonShowPosts'
+                onClick={() => setPosts(Sorting.sortPost("newest", [...posts]))}
+                >Newest</button>
+                <button type="button" className='ButtonShowPosts'
+                onClick={() => setPosts(Sorting.sortPost("oldest", [...posts]))}
+                >Oldest</button>
+            </div>
+                    {posts?.map((post) => {
+                        return (
+                            <Posts posts={post} deletePost={deletePost}/>
+                        )
+                    })}
         </>
     )
 }

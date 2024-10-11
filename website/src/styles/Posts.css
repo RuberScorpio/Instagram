@@ -2,8 +2,6 @@
 .Posts {
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
-    margin: 0;
-    padding: 0;
     justify-content: center;
     align-items: center; /* Inizia dall'alto, non centrare verticalmente */
     text-align: center;
@@ -15,6 +13,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.Buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 
 .Posts h2 {
     font-size: 1.5rem;
@@ -38,18 +41,18 @@
 }
 
 /* Button styles */
-.Posts button[type="button"] {
-    padding: 5px;
+.ButtonPosts {
+    padding: 7px;
     background-color: #ff7f50;
     border: none;
     border-radius: 5px;
-    font-size: 0.7rem;
+    font-size: 1rem;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 10px;
 }
 
-.Posts button[type="botton"]:hover {
+.ButtonPosts:hover {
     background-color: #e6674b;
 }

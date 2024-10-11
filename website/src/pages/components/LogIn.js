@@ -11,7 +11,7 @@ import Validation from '../../services/Validation';
 function LogIn(props) {
 
   const navigate = useNavigate();
-  const {setAuth} = useContext(AuthContext);
+  const {setLogin} = useContext(AuthContext);
 
   async function onLogIn(e) {
 
@@ -39,7 +39,7 @@ function LogIn(props) {
     if(response?.data?.error) {
       toast.error("Error", response.data.error);
     } else if(response?.data?.status) {
-      setAuth({
+      setLogin({
         email: response?.data?.email,
         username: response?.data?.username,
         status: response?.data?.status

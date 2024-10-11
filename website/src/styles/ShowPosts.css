@@ -1,0 +1,22 @@
+.Order {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ButtonShowPosts {
+    padding: 7px;
+    background-color: #ff7f50;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ButtonShowPosts:hover {
+    background-color: #e6674b;
+}

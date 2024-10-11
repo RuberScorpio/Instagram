@@ -3,12 +3,15 @@ import "../../styles/Posts.css";
 import axios from 'axios';
 import { AuthContext } from '../../services/AuthContext';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import DateService from '../../services/Date';
 
 
 function Posts(props) {
 
   const {login} = useContext(AuthContext);
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -35,15 +38,19 @@ function Posts(props) {
 
   return (
     <div className='Posts' id={props?.id}>
-    <h2>{props?.posts?.title}</h2>
-    <p>{props?.posts?.description}</p>
-    <p>{props?.posts?.createdAt}</p>
-    <p>{props?.username ? props?.username : props?.posts?.user?.username}</p>
-    {
-      login.username === username ?
-      <button type='button' onClick={onDelete}>Delete</button>
-      : <></>
-    }
+      <h2>{props?.posts?.title}</h2>
+      <p>{props?.posts?.description}</p>
+      <p>{DateService.formatDate(props?.posts?.createdAt)}</p>
+      <div className='Buttons'>
+        <button type="button" className='ButtonPosts' onClick={() => {navigate("/user/" + username)}}>
+        {username}
+        </button>
+        {
+          login.username === username ?
+          <button type='button' className='ButtonPosts' onClick={onDelete}>Delete</button>
+          : <></>
+        }
+      </div>
     </div>
   )
 }

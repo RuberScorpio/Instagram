@@ -17,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
-  const [login, setAuth] = useState(false);
+  const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect (() => {
@@ -40,7 +40,7 @@ function App() {
     if(response?.data?.error) {
       toast.error(response.data.error);
     } else if(response?.data?.user) {
-      setAuth(response?.data?.user)
+      setLogin(response?.data?.user)
     }
     setLoading(false);
   }
@@ -51,7 +51,7 @@ function App() {
 
   return (
     <>
-      <AuthContext.Provider value={{ login, setAuth }}>
+      <AuthContext.Provider value={{ login, setLogin }}>
         <Router>
           <Routes>
             <Route path="/entry" element={<Entry />} />

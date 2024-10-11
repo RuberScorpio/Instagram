@@ -1,7 +1,7 @@
 .Menu {
     position: fixed;
     left: 0;
-    top: 0;
+    bottom: 0;
     background-color: rgb(255, 255, 255);
     width: 100vw;
     height: 7vh;
@@ -21,7 +21,6 @@
 
 .Menu button[type="button"] {
     width: 100%; /* Larghezza 100% per pulsanti */
-    padding: 12px;
     background-color: #ff7f50;
     border: none;
     border-radius: 5px;
@@ -31,7 +30,6 @@
     transition: background-color 0.3s ease;
 }
 
-.Menu button[type="submit"]:hover,
 .Menu button[type="button"]:hover {
     background-color: #e6674b;
 }

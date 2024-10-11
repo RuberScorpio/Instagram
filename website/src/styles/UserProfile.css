@@ -1,13 +1,16 @@
 /* Centering the create post Profile */
 .Profile {
+    height: 100vh;
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
+    background-color: #f4f4f9;
+    display: block;
     justify-content: flex-start;
     align-items: center; /* Inizia dall'alto, non centrare verticalmente */
     text-align: center;
-    display: flex;
     flex-direction: column;
     padding: 20px; /* Aggiungi padding per evitare tagli */
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 20px; /* Spazio extra tra i blocchi */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,8 +30,7 @@
 }
 
 /* Button styles */
-.Profile button[type="submit"] {
-    width: 100%;
+.ButtonUserProfile {
     padding: 12px;
     background-color: #ff7f50;
     border: none;
@@ -40,6 +42,6 @@
     margin-top: 10px;
 }
 
-.Profile button[type="submit"]:hover {
+.ButtonUserProfile:hover {
     background-color: #e6674b;
 }

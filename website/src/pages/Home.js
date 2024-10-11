@@ -9,14 +9,14 @@ import { toast } from 'react-toastify';
 
 function Home() {
 
- const {setAuth} = useContext(AuthContext);
+ const {login, setLogin} = useContext(AuthContext);
  const navigate = useNavigate();
  const [menu, setMenu] = useState("Show");
  
  const onLogout = () => {
   localStorage.removeItem("AuthToken")
   navigate("/entry")
-  setAuth(false)
+  setLogin(false)
   toast.success("You have logged out")
  }
 
@@ -24,7 +24,9 @@ function Home() {
 <div className='Home'>
     <Menu
       setMenu={(value) => setMenu(value)}
+      menu={menu}
       onLogout={onLogout} 
+      username={login.username}
     />
     <div className='Contents'>
     <h1>Fintstagram</h1>

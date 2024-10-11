@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react'
 import { useParams } from "react-router-dom"
 import axios from 'axios';
 import Posts from "./components/Posts";
+import { useNavigate } from 'react-router-dom';
 import "../styles/UserProfile.css"
 
 function UserProfile() {
 
    const {username} = useParams();
    const [posts, setPosts] = useState([]);
+   const navigate = useNavigate();
 
    useEffect (() => {
       fetchData();
@@ -29,7 +31,10 @@ function UserProfile() {
   return (
    <>
       <div className='Profile'>
-      <h1>{username} Profile</h1>
+         <button type="button" className='ButtonUserProfile' onClick={() => {navigate(-1)}}>
+         Home
+         </button>
+         <h1>{username}</h1>
          <h2>Posts</h2>
                {posts.length>=1 && posts?.map((post) => {
                      return (
