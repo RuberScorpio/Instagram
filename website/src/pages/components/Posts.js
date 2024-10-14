@@ -5,6 +5,7 @@ import { AuthContext } from '../../services/AuthContext';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import DateService from '../../services/Date';
+import LikeSection from './LikeSection'
 
 
 function Posts(props) {
@@ -45,6 +46,7 @@ function Posts(props) {
         <button type="button" className='ButtonPosts' onClick={() => {navigate("/user/" + username)}}>
         {username}
         </button>
+        <LikeSection postId={props?.posts?.id} />
         {
           login.username === username ?
           <button type='button' className='ButtonPosts' onClick={onDelete}>Delete</button>

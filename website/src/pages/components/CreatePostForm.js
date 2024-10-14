@@ -13,8 +13,8 @@ function CreatePostForm() {
         
         await axios.post("http://localhost:5555/posts",
             {
-                  title: e.target[0].value,
-                  description: e.target[1].value,
+                title: e.target[0].value,
+                description: e.target[1].value,
             },
             {
                 headers: {
