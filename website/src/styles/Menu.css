@@ -7,7 +7,7 @@
     height: 7vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 5vw;
     box-sizing: border-box;
     gap: 2vh;
@@ -20,6 +20,8 @@
 }
 
 .Menu button[type="button"] {
+    display: flex;
+    align-items: center;
     width: 100%; /* Larghezza 100% per pulsanti */
     background-color: #ff7f50;
     border: none;

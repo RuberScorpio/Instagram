@@ -12,9 +12,14 @@ function Posts(props) {
 
   const {login} = useContext(AuthContext);
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    if(props?.posts?.title) {
+      setLoading(false) 
+    }
 
     if(props?.username) {
       setUsername(props?.username)
@@ -37,6 +42,10 @@ function Posts(props) {
     toast.success("You have Deleted Your Post")
   }
 
+  if(loading) {
+    return <></>
+  }
+
   return (
     <div className='Posts' id={props?.id}>
       <h2>{props?.posts?.title}</h2>
@@ -44,12 +53,17 @@ function Posts(props) {
       <p>{DateService.formatDate(props?.posts?.createdAt)}</p>
       <div className='Buttons'>
         <button type="button" className='ButtonPosts' onClick={() => {navigate("/user/" + username)}}>
-        {username}
+          {username}
         </button>
-        <LikeSection postId={props?.posts?.id} />
+        <LikeSection 
+          postId={props?.posts?.id} 
+          likes={props?.posts?.postsLikes}
+        />
         {
           login.username === username ?
-          <button type='button' className='ButtonPosts' onClick={onDelete}>Delete</button>
+          <button type='button' className='ButtonPosts' onClick={onDelete}>
+            Delete
+          </button>
           : <></>
         }
       </div>

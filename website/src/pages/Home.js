@@ -22,22 +22,23 @@ function Home() {
 
   return (
 <div className='Home'>
-    <Menu
-      setMenu={(value) => setMenu(value)}
-      menu={menu}
-      onLogout={onLogout} 
-      username={login.username}
-    />
     <div className='Contents'>
     <h1>Fintstagram</h1>
       {
         menu === "Show"
         ?
-        <ShowPosts/>
+        <ShowPosts />
         :
         <CreatePostForm />
       }
     </div>
+    <br />
+      <Menu
+        setMenu={(value) => setMenu(value)}
+        menu={menu}
+        onLogout={onLogout} 
+        username={login.username}
+      />
 </div>
   )
 }

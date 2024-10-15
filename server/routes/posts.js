@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router();
 const {validateToken} = require("../middlewares/Authentication")
-const { posts, users } = require("../models");
-const { Op, json } = require("sequelize");
+const { posts, users, postsLikes } = require("../models");
+const { Op } = require("sequelize");
 
 router.post("/", validateToken, async (req, res) => {
     const {title, description} = req.body;
@@ -28,6 +28,9 @@ router.get("/", validateToken, async (req, res) => {
         include: [{
             model: users,
             attributes: ["username"]
+        },
+        {
+            model: postsLikes
         }]
     });
 
@@ -51,7 +54,14 @@ router.get("/:username", validateToken, async (req, res) => {
         where: {
             userId: user.id,
             status: "active"
-        }
+        },
+        include: [{
+            model: users,
+            attributes: ["username"]
+        },
+        {
+            model: postsLikes
+        }]
     })
 
     return res.json(userPosts)

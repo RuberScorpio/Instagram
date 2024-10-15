@@ -42,7 +42,8 @@
 
 /* Button styles */
 .ButtonPosts {
-    padding: 7px;
+    display: flex;
+    align-items: center;
     background-color: #ff7f50;
     border: none;
     border-radius: 5px;
@@ -53,7 +54,8 @@
 }
 
 .LikeButton {
-    padding: 7px;
+    display: flex;
+    align-items: center;
     background-color: #ff7f50;
     border: none;
     border-radius: 5px;
