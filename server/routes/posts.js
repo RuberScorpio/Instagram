@@ -30,7 +30,7 @@ router.get("/", validateToken, async (req, res) => {
             attributes: ["username"]
         },
         {
-            model: postsLikes
+            model: postsLikes,
         }]
     });
 

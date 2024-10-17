@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
 import axios from 'axios';
-import Posts from "./Posts";
+import Comment from './Comment';
 import Sorting  from "../../services/Sorting";
-import "../../styles/ShowPosts.css";
 
-function GetAllPosts() {
+function GetAllComments(props) {
 
-    const [posts, setPosts] = useState([]);
+    const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [order] = useState("newest");
 
     useEffect (() => {
-        getAllPosts();
+        getAllComments();
     }, [])
     
-    const getAllPosts = async () => {
+    const getAllComments = async () => {
         
         let response = await axios.get(
-            "http://localhost:5555/posts",
+            "http://localhost:5555/postsComments/" + props?.postId,
             {
                 headers: {
                     authToken: localStorage.getItem("AuthToken")
@@ -30,7 +29,7 @@ function GetAllPosts() {
             if(response?.data?.error) {
                 toast.error(response.data.error);
             } else if(response?.data) {
-                setPosts(Sorting.sortPosts(order, response.data))
+                setComments(Sorting.sortComments(order, response.data))
             }
         setLoading(false);
     }
@@ -39,30 +38,30 @@ function GetAllPosts() {
       return <></>
     }
 
-    const deletePost = (id) => {
-        setPosts(
-            posts.filter((post) => post.id !== id)
+    const deleteComment = (id) => {
+        setComments(
+            comments.filter((comments) => comments.id !== id)
         )
     }
-        
+
     return (
         <>
-            <h2>Posts</h2>
+            <h2>Comments</h2>
             <div className='Order'>
-                <button type="button" className='ButtonShowPosts'
-                onClick={() => setPosts(Sorting.sortPosts("newest", [...posts]))}
+                <button type="button" className='ButtonShowComments'
+                onClick={() => setComments(Sorting.sortComments("newest", [...comments]))}
                 >Newest</button>
-                <button type="button" className='ButtonShowPosts'
-                onClick={() => setPosts(Sorting.sortPosts("oldest", [...posts]))}
+                <button type="button" className='ButtonShowComments'
+                onClick={() => setComments(Sorting.sortComments("oldest", [...comments]))}
                 >Oldest</button>
             </div>
-                    {posts?.map((post) => {
+                    {comments?.map((comment) => {
                         return (
-                            <Posts posts={post} deletePost={deletePost}/>
+                            <Comment comments={comment} deleteComment={deleteComment}/>
                         )
                     })}
         </>
-    )
+  )
 }
 
-export default GetAllPosts
+export default GetAllComments

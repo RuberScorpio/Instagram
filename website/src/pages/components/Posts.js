@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import DateService from '../../services/Date';
 import LikeSection from './LikeSection'
+import CommentsSection from './CommentsSection';
 
 
 function Posts(props) {
@@ -59,6 +60,7 @@ function Posts(props) {
           postId={props?.posts?.id} 
           likes={props?.posts?.postsLikes}
         />
+        <CommentsSection postId={props?.posts?.id} />
         {
           login.username === username ?
           <button type='button' className='ButtonPosts' onClick={onDelete}>

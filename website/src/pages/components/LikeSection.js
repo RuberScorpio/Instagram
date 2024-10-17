@@ -42,7 +42,6 @@ function LikeSection({postId, likes}) {
 
   return (
     <div className='Like'>
-      {/* <p>{total}</p> */}
       <button type="button" className='LikeButton' onClick={changeLike}>
         <img src= {like ? LikeActive : LikeInactive} alt={"LikeSelection"} />
         {total}
