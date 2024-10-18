@@ -14,6 +14,7 @@ function Posts(props) {
   const {login} = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,14 +54,18 @@ function Posts(props) {
       <p>{props?.posts?.description}</p>
       <p>{DateService.formatDate(props?.posts?.createdAt)}</p>
       <div className='Buttons'>
-        <button type="button" className='ButtonPosts' onClick={() => {navigate("/user/" + username)}}>
+        <button type="button" className='ButtonPosts' 
+          onClick={() => {navigate("/user/" + username)}}>
           {username}
         </button>
         <LikeSection 
           postId={props?.posts?.id} 
           likes={props?.posts?.postsLikes}
         />
-        <CommentsSection postId={props?.posts?.id} />
+        <button type="button" className='ButtonPosts' 
+          onClick={() => {setToggle(!toggle)}}>
+            Comments
+        </button>
         {
           login.username === username ?
           <button type='button' className='ButtonPosts' onClick={onDelete}>
@@ -69,6 +74,11 @@ function Posts(props) {
           : <></>
         }
       </div>
+        {
+          toggle ?
+          <CommentsSection postId={props?.posts?.id} /> 
+          : <></>
+        }
     </div>
   )
 }

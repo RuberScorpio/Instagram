@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import { toast } from "react-toastify";
-import { useNavigate } from 'react-router-dom';
 
 function CommentCreate(props) {
-
-    const navigate = useNavigate();
-
+    
+    const [comment, setComment] = useState("")
+    
     const createComment = async (e) => {
-            e.preventDefault();
+        e.preventDefault();
+
         
-        await axios.post("http://localhost:5555/postsComments",
+        let response = await axios.post("http://localhost:5555/postsComments",
             {
-                comment: e.target[0].value,
+                comment: comment,
                 postId: props?.postId 
             },
             {
@@ -20,14 +20,17 @@ function CommentCreate(props) {
                     authToken: localStorage.getItem("AuthToken"),
                 }
             }
-          )
-          toast.success("Comment has been Created")
-          navigate("/showcomments")  
+        )
+        toast.success("Comment has been Created")
+        props?.onCreate(response?.data)
+        setComment("")
     }
 
   return (
     <form className='CommentCreate' onSubmit={createComment}>
-        <textarea type="text" placeholder="Comment"/>
+        <textarea type="text" placeholder="Comment"
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}/>
         <button type="submit">Publish</button>
     </form>
   )

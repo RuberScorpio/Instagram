@@ -35,7 +35,7 @@ function Comment(props) {
           }
         )
     
-        props.deleteComments(props?.comments?.id)
+        props.deleteComment(props?.comments?.id)
         toast.success("You have Deleted Your Comment")
       }
 
@@ -45,7 +45,7 @@ function Comment(props) {
 
     return (
         <div className='Comment' id={props?.id}>
-        <p>{props?.comments?.Comment}</p>
+        <p>{props?.comments?.comment}</p>
         <p>{DateService.formatDate(props?.comments?.createdAt)}</p>
         <div className='CommentButtons'>
             <button type="button" onClick={() => {navigate("/user/" + username)}}>
