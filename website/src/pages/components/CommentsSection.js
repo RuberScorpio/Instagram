@@ -13,28 +13,9 @@ function CommentsSection(props) {
   const {login} = useContext(AuthContext);
 
   useEffect (() => {
-    getAllComments();
-}, [props])
-
-const getAllComments = async () => {
-    
-    let response = await axios.get(
-        "http://localhost:5555/postsComments/" + props?.postId,
-        {
-            headers: {
-                authToken: localStorage.getItem("AuthToken")
-            }
-        })
-        
-        console.log(response.data, "Response")
-        
-        if(response?.data?.error) {
-            toast.error(response.data.error);
-        } else if(response?.data) {
-            setComments(Sorting.sortComments("newest", response.data))
-        }
+    setComments(Sorting.sortComments("newest", props?.comments))
     setLoading(false);
-}
+}, [props])
 
 if(loading) {
   return <></>
@@ -52,12 +33,13 @@ if(loading) {
         ...comments
       ]
     )
+    
   }
 
   return (
     <div className='CommentsSection'>
+        <CommentCreate postId={props?.postId} onCreate={onCreate} addComment={() => {props?.addcomment()}}/>
         <ShowComments comments={comments}/>
-        <CommentCreate postId={props?.postId} onCreate={onCreate}/>
     </div>
   )
 }

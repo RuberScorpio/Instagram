@@ -1,24 +1,23 @@
-import React, {useContext, useState} from 'react'
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../services/AuthContext'
+import React, {useState, useEffect} from 'react'
 import CreatePostForm from './components/CreatePostForm';
 import ShowPosts from './components/ShowPosts';
 import Menu from './components/Menu';
 import "../styles/Home.css"
-import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 
 function Home() {
 
- const {login, setLogin} = useContext(AuthContext);
- const navigate = useNavigate();
  const [menu, setMenu] = useState("Show");
- 
- const onLogout = () => {
-  localStorage.removeItem("AuthToken")
-  navigate("/entry")
-  setLogin(false)
-  toast.success("You have logged out")
- }
+ const location = useLocation()
+ const {state} = location;
+
+ useEffect(() => {
+
+  if(state){
+    setMenu(state?.menuState)
+    console.log("menu", location) 
+  }
+ }, [location])
 
   return (
 <div className='Home'>
@@ -36,8 +35,6 @@ function Home() {
       <Menu
         setMenu={(value) => setMenu(value)}
         menu={menu}
-        onLogout={onLogout} 
-        username={login.username}
       />
 </div>
   )

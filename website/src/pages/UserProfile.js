@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react'
 import { useParams } from "react-router-dom"
 import axios from 'axios';
 import Posts from "./components/Posts";
-import { useNavigate } from 'react-router-dom';
 import "../styles/UserProfile.css"
+import Menu from './components/Menu'
 
 function UserProfile() {
 
    const {username} = useParams();
    const [posts, setPosts] = useState([]);
-   const navigate = useNavigate();
+   const [menu, setMenu] = useState(""); 
 
    useEffect (() => {
       fetchData();
@@ -31,18 +31,19 @@ function UserProfile() {
   return (
    <>
       <div className='Profile'>
-         <button type="button" className='ButtonUserProfile' onClick={() => {navigate(-1)}}>
-         Home
-         </button>
          <h1>{username}</h1>
          <h2>Posts</h2>
-               {posts.length>=1 && posts?.map((post) => {
-                     return (
-                        <Posts 
-                        posts={post}
-                        username={username} />
-                     )
-               })}
+            {posts.length>=1 && posts?.map((post) => {
+                  return (
+                     <Posts 
+                     posts={post}
+                     username={username} />
+                  )
+            })}
+         <Menu
+            setMenu={(value) => setMenu(value)}
+            menu={menu}
+         />
       </div>
    </>
   )

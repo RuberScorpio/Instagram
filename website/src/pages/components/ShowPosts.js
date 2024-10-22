@@ -33,6 +33,7 @@ function GetAllPosts() {
                 setPosts(Sorting.sortPosts(order, response.data))
             }
         setLoading(false);
+        console.log("comments", response?.data)
     }
 
     if(loading) {
@@ -58,7 +59,7 @@ function GetAllPosts() {
             </div>
                     {posts?.map((post) => {
                         return (
-                            <Posts posts={post} deletePost={deletePost}/>
+                            <Posts posts={post} deletePost={deletePost} />
                         )
                     })}
         </>

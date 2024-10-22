@@ -23,6 +23,7 @@ function CommentCreate(props) {
         )
         toast.success("Comment has been Created")
         props?.onCreate(response?.data)
+        props?.addComment()
         setComment("")
     }
 

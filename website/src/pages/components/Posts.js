@@ -15,6 +15,7 @@ function Posts(props) {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [toggle, setToggle] = useState(false);
+  const [commentlength, setCommentLength] = useState(0)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +28,10 @@ function Posts(props) {
       setUsername(props?.username)
     } else if(props?.posts?.user?.username) {
       setUsername(props?.posts?.user?.username);
+    }
+
+    if(props?.posts?.postsComments?.length) {
+      setCommentLength(props?.posts?.postsComments?.length)
     }
   }, [props])
 
@@ -56,7 +61,7 @@ function Posts(props) {
       <div className='Buttons'>
         <button type="button" className='ButtonPosts' 
           onClick={() => {navigate("/user/" + username)}}>
-          {username}
+            {username}
         </button>
         <LikeSection 
           postId={props?.posts?.id} 
@@ -64,7 +69,7 @@ function Posts(props) {
         />
         <button type="button" className='ButtonPosts' 
           onClick={() => {setToggle(!toggle)}}>
-            Comments
+            Comment {commentlength}
         </button>
         {
           login.username === username ?
@@ -76,9 +81,14 @@ function Posts(props) {
       </div>
         {
           toggle ?
-          <CommentsSection postId={props?.posts?.id} /> 
+          <CommentsSection 
+            postId={props?.posts?.id} 
+            comments={props?.posts?.postsComments} 
+            addcomment={() => {setCommentLength(commentlength+1)}}
+          /> 
           : <></>
         }
+
     </div>
   )
 }
